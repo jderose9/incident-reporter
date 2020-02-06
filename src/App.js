@@ -1,6 +1,11 @@
+import 'materialize-css'
+import 'materialize-css/dist/css/materialize.min.css'
 import React, {Component} from 'react';
 import './App.css';
 import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';
+
+import { Row, Col, Collapsible, CollapsibleItem, Icon } from 'react-materialize'
+
 
 const incidentData = require('./data/F01705150050.json');
 
@@ -9,7 +14,6 @@ const mapStyles = {
   width: '100%',
   height: '100%'
 };
-
 
 export class App extends Component {
   state = {
@@ -36,7 +40,38 @@ export class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <Row>
+        <Col
+          s={12} m={3}
+        >
+          <Collapsible accordion={false}>
+            <CollapsibleItem
+              expanded={true}
+              header="Location"
+              icon={<Icon>place</Icon>}
+              node="div"
+            >
+              {incidentData.address.address_line1}
+            </CollapsibleItem>
+            <CollapsibleItem
+              expanded={false}
+              header="Details"
+              icon={<Icon>event_note</Icon>}
+              node="div"
+            >
+              {incidentData.description.comments}
+            </CollapsibleItem>
+            <CollapsibleItem
+              expanded={false}
+              header="Fire Department"
+              icon={<Icon>whatshot</Icon>}
+              node="div"
+            >
+              {incidentData.fire_department.name}
+            </CollapsibleItem>
+          </Collapsible>
+        </Col>
+          <Col s={12} m={9}>
         <Map
           google={this.props.google}
           zoom={14}
@@ -58,7 +93,8 @@ export class App extends Component {
               </div>
           </InfoWindow>
         </Map>
-      </div>
+      </Col>
+      </Row>
     );
   }
 }
