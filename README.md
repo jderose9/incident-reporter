@@ -23,3 +23,10 @@ Change the following line in the `./src/App.js` file:
 ```
 const incidentData = require('./data/F01705150050.json');
 ```
+
+
+## Using the application
+
+To use the application, select each of the collapsible items under "Incident" to get more information. To view the route of each responder and their status reported along the way, choose an item under "Responders".
+
+![Image](screenshot.png)
