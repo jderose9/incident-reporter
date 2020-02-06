@@ -2,7 +2,6 @@ import 'materialize-css'
 import 'materialize-css/dist/css/materialize.min.css'
 import React, {Component} from 'react';
 import { Row, Col } from 'react-materialize'
-import { GoogleApiWrapper } from 'google-maps-react';
 import { IncidentReport } from './components/incident-report';
 import { WrappedMapContainer } from './components/map-container';
 
