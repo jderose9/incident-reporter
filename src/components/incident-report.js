@@ -17,7 +17,7 @@ export class IncidentReport extends Component {
                 this.props.incidentData.description.event_opened)
           .then(response => response.json())
           .then(data => this.setState({ weather: data }));
-      }
+    }
 
     render() {
         const incidentData = this.props.incidentData;

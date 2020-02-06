@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';
+import { GoogleApiWrapper, Map, Marker, InfoWindow, Polyline } from 'google-maps-react';
 
 const mapStyles = {
     width: '100%',
@@ -53,6 +53,15 @@ class MapContainer extends Component {
                         <h1>{this.state.selectedPlace.header}</h1>
                     </div>
                 </InfoWindow>
+
+                {this.props.polylineCoords && 
+                    <Polyline
+                        path={this.props.polylineCoords}
+                        strokeColor="#0000FF"
+                        strokeOpacity={0.8}
+                        strokeWeight={4}
+                         />
+                }
             </Map>
         );
     }

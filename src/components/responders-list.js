@@ -2,19 +2,38 @@ import React, { Component } from 'react';
 import { Collapsible, CollapsibleItem, Icon, Table } from 'react-materialize'
 
 export class RespondersList extends Component {
+    constructor(props) {
+        super(props);
+    
+        this.handleSelect = this.handleSelect.bind(this);
+    }
+      
+    handleSelect(val, state) {
+        if(this.props.onSelect) {
+            const status = this.sortResponderStatus(this.props.responders[val])
+            const coords = status.map((s) => { return { lat: s.value?.latitude, lng: s.value?.longitude }  })
+            console.log(coords);
+            this.props.onSelect(coords)
+        }
+    }
+
+    sortResponderStatus(responder) {
+        return Object.entries(responder.unit_status)
+            .map(([key, value]) => { return { key, value } })
+            .sort((a, b) => (a.value?.timestamp || '').localeCompare(b.value?.timestamp || '')); // assuming all timestamps have same offset
+    }
+
     render() {
         const responders = this.props.responders;
         let responderStatus = {};
 
         responders.forEach(responder => {
             if(responder.unit_status)
-                responderStatus[responder.car_id] = Object.entries(responder.unit_status)
-                    .map(([key, value]) => { return { key, value } })
-                    .sort((a, b) => (a.value?.timestamp || '').localeCompare(b.value?.timestamp || '')); // assuming all timestamps have same offset
+                responderStatus[responder.car_id] = this.sortResponderStatus(responder);
         });
 
         return (
-            <Collapsible accordion={true}>
+            <Collapsible accordion={true} onSelect={this.handleSelect}>
                  {responders && responders.map((responder, index) => 
                     <CollapsibleItem
                         key={responder.car_id}

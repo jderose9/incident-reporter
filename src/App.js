@@ -11,6 +11,17 @@ const incidentData = require('./data/F01705150050.json');
 
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { polylineCoords: null}
+
+    this.handleResponderSelect = this.handleResponderSelect.bind(this);
+  }
+
+  handleResponderSelect(coords) {
+    this.setState({polylineCoords: coords});
+  }
+
   render() {
     return (
       <Row>
@@ -30,10 +41,10 @@ export default class App extends Component {
               select to plot route)
             </div> */}
           </CardPanel>
-          <RespondersList responders={incidentData.apparatus} />
+          <RespondersList responders={incidentData.apparatus} onSelect={this.handleResponderSelect} />
         </Col>
         <Col s={12} m={9}>
-          <WrappedMapContainer incidentData={incidentData} />
+          <WrappedMapContainer incidentData={incidentData} polylineCoords={this.state.polylineCoords} />
         </Col>
       </Row>
     );
