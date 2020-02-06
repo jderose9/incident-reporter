@@ -68,6 +68,6 @@ class MapContainer extends Component {
 }
 
 export const WrappedMapContainer = GoogleApiWrapper({
-    apiKey: 'AIzaSyCeRTYIVDJImwKDxACx5pDnrLXWmbZlRL4'
+    apiKey: process.env.REACT_APP_GOOGLE_MAPS_KEY
   })(MapContainer);
   

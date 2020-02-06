@@ -11,7 +11,8 @@ export class IncidentReport extends Component {
     }
 
     componentDidMount() {
-        fetch('https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/a2be2e48c76c7902071ca2fa90144125/' + 
+        fetch('https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/' + 
+                process.env.REACT_APP_DARK_SKY_KEY + '/' + 
                 this.props.incidentData.address.latitude + ',' + 
                 this.props.incidentData.address.longitude + ',' + 
                 this.props.incidentData.description.event_opened)

@@ -5,7 +5,14 @@ Pre-requisites:
 - Node.js
 - NPM
 
-To get started, perform the following commands:
+To get started, replace the contents of .env file with valid Google Maps and Dark Sky api key values:
+```
+REACT_APP_GOOGLE_MAPS_KEY=changeme
+REACT_APP_DARK_SKY_KEY=changeme
+```
+
+
+Then, perform the following commands:
 
 ```
 npm install
